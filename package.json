@@ -1,0 +1,19 @@
+{
+  "name": "tutors",
+  "version": "1.0.0",
+  "description": "custom APIs for tutors app",
+  "main": "index.js",
+  "repository": "github.com/JuliusWinston/tutors_custom_apis",
+  "author": "dev Winston",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "nodemailer": "^6.9.4",
+    "nodemon": "^3.0.1",
+    "uuid": "^9.0.0"
+  }
+}
