@@ -1,14 +1,13 @@
 const Email = require('../lib/sendEmail')
-const { getPostData } = require('../utils/index')
 
 const sendSignupEmail = async (req, res) => {
   try {
-    const body = await getPostData(req)
-    const { email, password } = JSON.parse(body)
+    const { email } = req.body;
+    const password = "test-node-password"; // use bcrypt to generate this
 
-    res.writeHead(200, {'Content-Type': 'application/json'})
-    Email.send(email, password)
-    res.end(JSON.stringify({'message': 'Email send successfully!'}))
+    Email.send(email, password);
+    res.json({'message': 'Email send successfully!'});
+
   } catch (error) {
     console.log(error)
   }
@@ -17,3 +16,5 @@ const sendSignupEmail = async (req, res) => {
 module.exports = {
   sendSignupEmail
 }
+
+//{"email": "jsoulgh22@gmail.com", "password": "pass123"}

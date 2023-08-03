@@ -1,18 +1,20 @@
-const http = require('http')
 const { sendSignupEmail } = require('./src/controllers/EmailController')
+const cors = require('cors')
+
+const express = require("express");
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 const HOST = process.env.HOST || 'localhost'
-const PORT = process.env.PORT || 4000
+const PORT = process.env.PORT || 8000
 
-const server = http.createServer((req, res) => {
-  if(req.url === '/api/send-email' && req.method === "POST") {
-    sendSignupEmail(req, res)
-  } else {
-    res.writeHead(404, {'Content-Type': 'application/json'})
-    res.end({'message': 'Resource not found!'})
-  }
+app.post("/api/send-email", (req, res) => {
+  sendSignupEmail(req, res)
 })
 
-server.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`Server running on http://${HOST}:${PORT}`)
-})
+});
