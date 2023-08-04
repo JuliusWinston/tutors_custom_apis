@@ -10,7 +10,17 @@ const transporter = nodemailer.createTransport({
   }
 })
 
-const send = async (email, password) => {
+// const transporter = nodemailer.createTransport({
+//   host: "tutorsgh.com",
+//   port: 465,
+//   secure: true,
+//   auth: {
+//     user: "info@tutorsgh.com",
+//     pass: "!info@tutors",
+//   }
+// })
+
+const sendEmail = async (email, password) => {
   const htmlComponent = () => {
     return `<div style="padding: 16px; border-style: solid; border-width: 1px; border-color: #EFEFEF; margin: 40px; background-color: #e1e1e1;">
       <div style="display: flex; flex-direction: row; ">
@@ -47,5 +57,5 @@ const send = async (email, password) => {
 }
 
 module.exports = {
-  send
+  sendEmail
 }
