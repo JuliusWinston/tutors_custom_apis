@@ -18,7 +18,7 @@ const HOST = process.env.HOST || 'localhost'
 const PORT = process.env.PORT || 9400
 
 app.get("/", (req, res) => {
-  res.send("Working!")
+  res.send("Updated smtp server to use my gmail!")
 })
 
 app.post("/api/send-email", (req, res) => {
