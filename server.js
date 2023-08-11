@@ -8,8 +8,18 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+// Middleware to prevent caching for all routes
+app.use((req, res, next) => {
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+  next();
+});
+
 const HOST = process.env.HOST || 'localhost'
-const PORT = process.env.PORT || 8000
+const PORT = process.env.PORT || 8400
+
+app.get("/", (req, res) => {
+  res.send("Working!")
+})
 
 app.post("/api/send-email", (req, res) => {
   try {

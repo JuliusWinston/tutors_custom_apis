@@ -2,11 +2,10 @@ const Email = require('../lib/sendEmail')
 
 const sendSignupEmail = async (req, res) => {
   try {
-    const { email } = await req.body;
+    const { email, name } = await req.body;
     const password = "test-node-password"; // use bcrypt to generate this
 
-    Email.sendEmail(email, password);
-
+    Email.sendEmail(email, name, password);
   } catch (error) {
     console.log(error)
   }
@@ -15,5 +14,3 @@ const sendSignupEmail = async (req, res) => {
 module.exports = {
   sendSignupEmail
 }
-
-//{"email": "jsoulgh22@gmail.com", "password": "pass123"}
