@@ -1,17 +1,41 @@
-const http = require('http')
+const { sendSignupEmail } = require('./src/controllers/EmailController')
+const cors = require('cors')
+
+const express = require("express");
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+
+// Middleware to prevent caching for all routes
+app.use((req, res, next) => {
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+  next();
+});
 
 const HOST = process.env.HOST || 'localhost'
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 9400
 
-const server = http.createServer((req, res) => {
-  if(req.url === '/send-email' && req.method === "POST") {
-    
-  } else {
-    res.writeHead(404, {'Content-Type': 'application/json'})
-    res.end({'message': 'Resource not found!'})
+app.get("/", (req, res) => {
+  res.send("Working!")
+})
+
+app.post("/api/send-email", (req, res) => {
+  try {
+    sendSignupEmail(req, res)
+    res.json({'message': 'Email sent successfully!'});
+  } catch (err) {
+    res.status(err.status || 500).send({
+      error: {
+        status: error.status || 500,
+        message: error.message || "Internal Server Error",
+      }
+    })
   }
+  sendSignupEmail(req, res)
 })
 
-server.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`Server running on http://${HOST}:${PORT}`)
-})
+});
