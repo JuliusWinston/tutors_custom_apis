@@ -1,24 +1,24 @@
 const nodemailer = require("nodemailer")
 
-// const transporter = nodemailer.createTransport({
-//   host: "smtp.gmail.com",
-//   port: 465,
-//   secure: true,
-//   auth: {
-//     user: "devwinston35@gmail.com",
-//     pass: "ffgfdudndujxbnpm",
-//   }
-// })
-
 const transporter = nodemailer.createTransport({
-  host: "tutorsgh.com",
+  host: "smtp.gmail.com",
   port: 465,
   secure: true,
   auth: {
-    user: "info@tutorsgh.com",
-    pass: "!info@tutors",
+    user: "devwinston35@gmail.com",
+    pass: "ffgfdudndujxbnpm",
   }
 })
+
+// const transporter = nodemailer.createTransport({
+//   host: "tutorsgh.com",
+//   port: 465,
+//   secure: true,
+//   auth: {
+//     user: "info@tutorsgh.com",
+//     pass: "!info@tutors",
+//   }
+// })
 
 // Use this new message (After parent dashboard is ready)
 // Hi Kofi,
@@ -67,7 +67,7 @@ const sendEmail = async (email, name, password) => {
 
   try {
     const info = await transporter.sendMail({
-      from: 'Tutors Gh <info@tutorsgh.com>',
+      from: 'Tutors Gh <devwinston@gmail.com>',
       to: email,
       subject: 'Tutors application',
       html: htmlComponent(),
