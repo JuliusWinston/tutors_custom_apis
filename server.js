@@ -22,18 +22,17 @@ app.get("/", (req, res) => {
 })
 
 app.post("/api/send-email", (req, res) => {
-  // try {
-  //   sendSignupEmail(req, res)
-  //   res.json({'message': 'Email sent successfully!'});
-  // } catch (err) {
-  //   res.status(err.status || 500).send({
-  //     error: {
-  //       status: error.status || 500,
-  //       message: error.message || "Internal Server Error",
-  //     }
-  //   })
-  // }
-  res.json({"message": "Post Request"})
+  try {
+    sendSignupEmail(req, res)
+    res.json({'message': 'Email sent successfully!'});
+  } catch (err) {
+    res.status(err.status || 500).send({
+      error: {
+        status: error.status || 500,
+        message: error.message || "Internal Server Error",
+      }
+    })
+  }
 })
 
 app.listen(PORT, () => {
