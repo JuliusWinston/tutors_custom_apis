@@ -24,7 +24,6 @@ app.get("/", (req, res) => {
 app.post("/api/send-email", (req, res) => {
   try {
     sendSignupEmail(req, res)
-    res.json({'message': 'Email sent successfully!'});
   } catch (err) {
     res.status(err.status || 500).send({
       error: {
