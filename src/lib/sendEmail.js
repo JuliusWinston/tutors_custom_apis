@@ -79,9 +79,9 @@ const sendEmail = async (email, name, password) => {
       }]
     })
 
-    return info
-  } catch(error) {
-    console.error(error)
+    return { status: 'ok', info };
+  } catch(err) {
+    return err;
   }
 }
 
