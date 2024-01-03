@@ -3,8 +3,7 @@ require('dotenv').config();
 const cors = require('cors');
 const db = require('./config/database');
 
-const UserAuthRouter = require('./src/routes/UserAuthRoutes');
-const EmailRouter = require('./src/routes/EmailRoutes');
+const { UserAuthRouter, EmailRouter, TestRouter } = require('./src/routes');
 
 const express = require("express");
 const app = express();
@@ -33,9 +32,10 @@ db.connect()
   });
 
 app.get("/", (req, res) => {
-  res.send("Updated smtp server to use my gmail!")
+  res.status(200).send("Updated smtp server to use my gmail!")
 });
 
+app.use('/api/testing', TestRouter);
 app.use('/api', UserAuthRouter);
 app.use('/api', EmailRouter);
 

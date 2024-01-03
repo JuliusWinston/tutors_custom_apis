@@ -1,6 +1,11 @@
-const { sendSignUpEmail, testSignUp } = require ('./EmailController');
+const { handleSendSignUpEmail } = require ('./EmailController');
+const { handleTestSignUp, handleTestModule, handleThrowawayTests } = require('./TestController');
+const { handleCreateAuth } = require('./UserAuthController');
 
 module.exports = {
-  testSignUp,
-  sendSignUpEmail
+  handleThrowawayTests,
+  handleTestSignUp,
+  handleTestModule,
+  handleCreateAuth,
+  handleSendSignUpEmail
 }

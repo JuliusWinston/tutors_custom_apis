@@ -1,10 +1,11 @@
 const express = require('express');
-const UserAuthController = require('../controllers/UserAuthController');
-
+const { handleCreateAuth } = require('../controllers');
 
 const UserAuthRouter = express.Router();
 
 UserAuthRouter.route('/auth')
-  .post(UserAuthController.handleCreateAuth);
+  .post(handleCreateAuth);
 
-module.exports = UserAuthRouter;
+module.exports ={
+  UserAuthRouter
+};

@@ -1,10 +1,12 @@
 const express = require('express');
-const TestRouteController = require('../controllers/TestController');
+const { handleTestModule, handleTestSignUp, handleThrowawayTests } = require('../controllers');
 
 const TestRouter = express.Router();
 
-TestRouter.route('/tutors')
-  .get(TestRouteController.handleFetchTutors)
-  .post(TestRouteController.handleAddTutor);
+TestRouter.get('/signup-email', handleTestSignUp);
+TestRouter.get('/generate-password', handleTestModule);
+TestRouter.get('/throwaway', handleThrowawayTests);
 
-module.exports = TestRouter;
+module.exports =  {
+  TestRouter
+};

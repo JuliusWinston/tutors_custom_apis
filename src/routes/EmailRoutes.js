@@ -1,10 +1,11 @@
 const express = require('express');
-const emailRouter = express.Router();
+const { handleSendSignUpEmail } = require('../controllers');
 
-const { testSignUp, sendSignUpEmail } = require('../controllers');
+const EmailRouter = express.Router();
 
-emailRouter.route("/send-signup-email")
-  .get(testSignUp)
-  .post(sendSignUpEmail);
+EmailRouter.route("/send-signup-email") 
+  .post(handleSendSignUpEmail);
 
-module.exports =  emailRouter;
+module.exports = {
+  EmailRouter
+};
